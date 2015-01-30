@@ -1,0 +1,19 @@
+Sub PlainToASCII()
+Dim pText, cText, pChar, cChar As String 'define variables for plaintext, cyphertext, plaintextCharacter, and cyphertextCharacter as Strings
+Dim i, n As Integer 'define i and n tracker variables as Integers
+
+pText = ActiveSheet.Range("B1").Value 'Get the value for the plaintext
+n = Len(pText) 'set n equal to the length of the plaintext
+
+cText = ""
+For i = 0 To n - 1 'loop through the string (an array of chars) with a for loop
+    pChar = Mid(pText, i + 1, 1) 'get a character from the plaintext
+    cChar = Asc(pChar) 'get the ASCII code for that character
+    If Asc(pChar) < 10 Then cChar = "0" & cChar 'add two zeros to the front of values that are less than 10 Ex: 2 becomes 002
+    If Asc(pChar) < 100 Then cChar = "0" & cChar 'add a zero to the front of values that are less than 100 Ex: 10 becomes 010
+    
+    cText = cText & cChar 'add that character to the end of the cyphertext string
+Next i 'end the for loop
+
+ActiveSheet.Range("B2").Value = "'" & cText 'print out the cyphertext as a string (that is what the apostrophy does)
+End Sub
