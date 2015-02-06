@@ -1,0 +1,13 @@
+Sub GenerateKey()
+Dim PLen As Integer 'Integer for length of key
+Dim Key As String 'String for the Key
+
+PLen = Len(ActiveSheet.Range("B7").Value) 'Get the value for the length of the plaintext
+Key = "'" 'Initialize Key to display as a string
+
+For i = 1 To PLen 'Loop though the length of the plaintext
+    Key = Key & Int((1 - 0 + 1) * Rnd) 'Generate a random 1 or 0 and concatenate that with the Key string
+Next i 'End for loop
+
+ActiveSheet.Range("B8").Value = Key 'Print out to the spreadsheet
+End Sub
